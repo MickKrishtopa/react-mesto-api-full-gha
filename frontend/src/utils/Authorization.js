@@ -1,4 +1,4 @@
-const BASE_URL = 'https://auth.nomoreparties.co';
+const BASE_URL = 'http://localhost:4000';
 
 class Authorization {
   constructor(baseUrl) {
@@ -16,6 +16,7 @@ class Authorization {
   registration(email, password) {
     return fetch(this._baseUrl + '/signup', {
       method: 'POST',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -29,6 +30,7 @@ class Authorization {
   login(email, password) {
     return fetch(this._baseUrl + '/signin', {
       method: 'POST',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -42,9 +44,10 @@ class Authorization {
   checkToken(token) {
     return fetch(this._baseUrl + '/users/me', {
       method: 'GET',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
+        Authorization: token,
       },
     }).then((res) => this._checkResponse(res));
   }

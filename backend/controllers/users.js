@@ -111,7 +111,11 @@ const login = (req, res, next) => {
   return User.findUserByCredentials(email, password)
     .then((user) => {
       const token = generateToken(user._id);
-      return res.status(httpConstants.HTTP_STATUS_OK).send({ jwt: token });
+      res.cookie('jwt', token, {
+        maxAge: 604800,
+        httpOnly: true,
+      });
+      return res.status(httpConstants.HTTP_STATUS_OK).send(user);
     })
     .catch(next);
 };

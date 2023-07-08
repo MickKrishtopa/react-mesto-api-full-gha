@@ -98,7 +98,7 @@ function App() {
 
   function handleCardLikeClick(card) {
     const isLiked = card.likes.some(
-      (cardLikes) => cardLikes._id === currentUser._id
+      (cardLikes) => cardLikes === currentUser._id
     );
 
     api
@@ -126,24 +126,20 @@ function App() {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
 
-    if (token) {
       authorization
-        .checkToken(token)
+        .checkToken()
         .then((res) => {
           setLoggedIn(true);
           fetchData();
-          setuserEmail(res.data.email);
+          setuserEmail(res.email);
           navigate('/', { replace: true });
         })
         .catch((err) => {
           setLoggedIn(false);
-          console.log('Ошибка:', err.status);
+          console.log('Ошибка:', err.message);
         });
-    } else {
-      setLoggedIn(false);
-    }
+    
   }, []);
 
   function handleEditAvatarClick() {
@@ -216,7 +212,6 @@ function App() {
         fetchData();
         setuserEmail(email);
         navigate('/', { replace: true });
-        localStorage.setItem('token', res.token);
       })
       .catch((res) => res.json())
       .then((res) => {
@@ -232,7 +227,6 @@ function App() {
 
   function handleLogOut() {
     setLoggedIn(false);
-    localStorage.removeItem('token');
   }
 
   if (loggedIn === null) {

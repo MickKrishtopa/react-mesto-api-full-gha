@@ -3,7 +3,7 @@ const { verifyToken } = require('../utils/jwt');
 const AuthorizationError = require('../errors/AuthorizationError');
 
 const auth = (req, res, next) => {
-  const { authorization } = req.headers;
+  const authorization = req.cookies.jwt;
 
   const check = verifyToken(authorization);
 
