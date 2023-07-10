@@ -36,7 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 
 app.use(requestLogger);
-app.use(routes);
+app.use('/api', routes);
 app.use(errorLogger);
 
 app.use(errors());
