@@ -17,6 +17,10 @@ class Authorization {
   }
 
   registration(email, password) {
+
+    console.log('АПИ из окружения', API_URL);
+    console.log('Запрос на этот УРЛ', this._baseUrl + '/signup');
+
     return fetch(this._baseUrl + '/signup', {
       method: 'POST',
       credentials: 'include',
@@ -31,6 +35,10 @@ class Authorization {
   }
 
   login(email, password) {
+
+    console.log('АПИ из окружения', API_URL);
+    console.log('Запрос на этот УРЛ', this._baseUrl + '/signin');
+
     return fetch(this._baseUrl + '/signin', {
       method: 'POST',
       credentials: 'include',
