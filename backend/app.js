@@ -2,7 +2,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const path = require('path');
 const cors = require('cors');
 const { errors } = require('celebrate');
 const cookieParser = require('cookie-parser');
@@ -27,11 +26,9 @@ mongoose
 
 const app = express();
 
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(cors({ origin: 'http://mickkrishtopa.nomoredomains.work/', credentials: true }));
 
 app.use(cookieParser());
-
-// app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.json());
 
