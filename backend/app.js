@@ -10,7 +10,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const routes = require('./routes/routes');
 const { errorHandler } = require('./middlewares/errorHandler');
 
-const { PORT = 4000, DB_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
+const { PORT = 4000, DB_URL = 'mongodb://127.0.0.1:27017/mestodb', CORS_URL = 'http://localhost:3000' } = process.env;
 
 mongoose
   .connect(DB_URL, {
@@ -26,7 +26,7 @@ mongoose
 
 const app = express();
 
-app.use(cors({ origin: 'http://mickkrishtopa.nomoredomains.work', credentials: true }));
+app.use(cors({ origin: CORS_URL, credentials: true }));
 
 app.use(cookieParser());
 
