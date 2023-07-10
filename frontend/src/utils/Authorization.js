@@ -1,5 +1,5 @@
 
-const { API_URL = 'http://localhost:4000' } = process.env;
+const { REACT_APP_API_URL = 'http://localhost:4000' } = process.env;
 
 
 
@@ -18,7 +18,7 @@ class Authorization {
 
   registration(email, password) {
 
-    console.log('АПИ из окружения', API_URL);
+    console.log('АПИ из окружения', REACT_APP_API_URL);
     console.log('Запрос на этот УРЛ', this._baseUrl + '/signup');
 
     return fetch(this._baseUrl + '/signup', {
@@ -36,7 +36,7 @@ class Authorization {
 
   login(email, password) {
 
-    console.log('АПИ из окружения', API_URL);
+    console.log('АПИ из окружения', REACT_APP_API_URL);
     console.log('Запрос на этот УРЛ', this._baseUrl + '/signin');
 
     return fetch(this._baseUrl + '/signin', {
@@ -64,5 +64,5 @@ class Authorization {
   }
 }
 
-const authorization = new Authorization(API_URL);
+const authorization = new Authorization(REACT_APP_API_URL);
 export default authorization;

@@ -1,4 +1,4 @@
-const { API_URL = 'http://localhost:4000' } = process.env;
+const { REACT_APP_API_URL = 'http://localhost:4000' } = process.env;
 
 class Api {
   constructor({ baseUrl, headers }) {
@@ -82,7 +82,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: API_URL,
+  baseUrl: REACT_APP_API_URL,
   headers: {
     'Content-Type': 'application/json',
   },

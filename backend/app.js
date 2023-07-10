@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -18,6 +19,7 @@ mongoose
   })
   .then(() => {
     console.log('Connected to BD');
+    console.log('CORS_URL', CORS_URL);
   })
   .catch((err) => {
     console.log('Fail connected to BD');
