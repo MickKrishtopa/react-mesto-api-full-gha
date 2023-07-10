@@ -31,7 +31,7 @@ app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 
 app.use(cookieParser());
 
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.json());
 
