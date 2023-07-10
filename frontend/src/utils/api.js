@@ -1,3 +1,5 @@
+const { API_URL = 'http://localhost:4000' } = process.env;
+
 class Api {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
@@ -80,7 +82,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: 'http://localhost:4000/api',
+  baseUrl: API_URL,
   headers: {
     'Content-Type': 'application/json',
   },

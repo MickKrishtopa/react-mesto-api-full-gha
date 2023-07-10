@@ -1,4 +1,7 @@
-const BASE_URL = 'http://localhost:4000/api';
+
+const { API_URL = 'http://localhost:4000' } = process.env;
+
+
 
 class Authorization {
   constructor(baseUrl) {
@@ -53,5 +56,5 @@ class Authorization {
   }
 }
 
-const authorization = new Authorization(BASE_URL);
+const authorization = new Authorization(API_URL);
 export default authorization;
