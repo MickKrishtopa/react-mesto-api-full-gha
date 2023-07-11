@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
-require('dotenv').config();
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const { errors } = require('celebrate');
-const cookieParser = require('cookie-parser');
-const { requestLogger, errorLogger } = require('./middlewares/logger');
+require('dotenv').config(); // check
+const express = require('express'); // check
+const mongoose = require('mongoose'); // check
+const bodyParser = require('body-parser'); // check
+const cors = require('cors'); // check
+const { errors } = require('celebrate'); // check
+const cookieParser = require('cookie-parser'); // check
+const { requestLogger, errorLogger } = require('./middlewares/logger'); // check
 
 const routes = require('./routes/routes');
 const { errorHandler } = require('./middlewares/errorHandler');
