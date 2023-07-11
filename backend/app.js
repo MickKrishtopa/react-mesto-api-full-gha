@@ -19,7 +19,6 @@ mongoose
   })
   .then(() => {
     console.log('Connected to BD');
-    console.log('CORS_URL', CORS_URL);
   })
   .catch((err) => {
     console.log('Fail connected to BD');
@@ -28,6 +27,7 @@ mongoose
 
 const app = express();
 
+console.log('CORS_URL', CORS_URL);
 app.use(cors({ origin: CORS_URL, credentials: true }));
 
 app.use(cookieParser());
