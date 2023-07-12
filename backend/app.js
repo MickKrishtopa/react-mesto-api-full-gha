@@ -6,7 +6,7 @@ const bodyParser = require('body-parser'); // check
 const cors = require('cors'); // check
 const { errors } = require('celebrate'); // check
 const cookieParser = require('cookie-parser'); // check
-// const { requestLogger, errorLogger } = require('./middlewares/logger'); // check
+const { requestLogger, errorLogger } = require('./middlewares/logger'); // check
 
 const routes = require('./routes/routes');
 const { errorHandler } = require('./middlewares/errorHandler');
@@ -34,9 +34,9 @@ app.use(cookieParser());
 
 app.use(bodyParser.json());
 
-// app.use(requestLogger);
+app.use(requestLogger);
 app.use(routes);
-// app.use(errorLogger);
+app.use(errorLogger);
 
 app.use(errors());
 app.use(errorHandler);
