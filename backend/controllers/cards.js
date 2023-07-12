@@ -8,7 +8,7 @@ const ValidationError = require('../errors/ValidationError');
 const ForbiddenError = require('../errors/ForbiddenError');
 
 const getCards = (req, res, next) => Card.find({})
-  .then((cards) => res.status(httpConstants.HTTP_STATUS_OK).send(cards))
+  .then((cards) => res.send(cards))
   .catch(next);
 
 const createCard = (req, res, next) => {
@@ -38,7 +38,7 @@ const removeCardById = (req, res, next) => {
       }
 
       return Card.findByIdAndDelete(cardId)
-        .then((removedCard) => res.status(httpConstants.HTTP_STATUS_OK).send(removedCard));
+        .then((removedCard) => res.send(removedCard));
     })
     .catch((err) => {
       if (err instanceof mongoose.Error.CastError) {
@@ -55,7 +55,7 @@ const toggleCardLike = (req, res, next, action) => {
     { new: true },
   )
     .orFail(new NotFoundError())
-    .then((newCard) => res.status(httpConstants.HTTP_STATUS_OK).send(newCard))
+    .then((newCard) => res.send(newCard))
     .catch((err) => {
       if (err instanceof mongoose.Error.CastError) {
         return next(new BadRequestError());

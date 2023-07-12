@@ -12,14 +12,14 @@ const ConflictError = require('../errors/ConflictError');
 // console.log(httpConstants);
 
 const getUsers = (req, res, next) => User.find({})
-  .then((users) => res.status(httpConstants.HTTP_STATUS_OK).send(users))
+  .then((users) => res.send(users))
   .catch(next);
 
 const getUserById = (req, res, next) => {
   const { userId } = req.params;
   return User.findById(userId)
     .orFail(new NotFoundError())
-    .then((user) => res.status(httpConstants.HTTP_STATUS_OK).send(user))
+    .then((user) => res.send(user))
     .catch((err) => {
       if (err instanceof mongoose.Error.CastError) {
         return next(new BadRequestError());
@@ -78,7 +78,7 @@ function updateUserDataByID(req, res, next, newUserData) {
     runValidators: true,
   })
     .orFail(new NotFoundError())
-    .then((updateUserData) => res.status(httpConstants.HTTP_STATUS_OK).send(updateUserData))
+    .then((updateUserData) => res.send(updateUserData))
     .catch((err) => {
       if (err instanceof mongoose.Error.ValidationError) {
         return next(new ValidationError(Object.values(err.errors)
@@ -115,13 +115,13 @@ const login = (req, res, next) => {
         maxAge: 604800000,
         httpOnly: true,
       });
-      return res.status(httpConstants.HTTP_STATUS_OK).send(user);
+      return res.send({ message: 'Authorization is successful' });
     })
     .catch(next);
 };
 
 const getUserInfo = (req, res, next) => User.findById(req.user._id)
-  .then((user) => res.status(httpConstants.HTTP_STATUS_OK).send(user))
+  .then((user) => res.send(user))
   .catch(next);
 
 module.exports = {
