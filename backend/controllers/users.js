@@ -112,7 +112,7 @@ const login = (req, res, next) => {
     .then((user) => {
       const token = generateToken(user._id);
       res.cookie('jwt', token, {
-        maxAge: 604800,
+        maxAge: 604800000,
         httpOnly: true,
       });
       return res.status(httpConstants.HTTP_STATUS_OK).send(user);
